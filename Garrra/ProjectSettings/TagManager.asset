@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - Enemies
-  - 
-  - 
+  - Scenary
+  - Structure
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Scenery
+    uniqueID: 3312111087
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
