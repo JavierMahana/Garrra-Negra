@@ -12,6 +12,10 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask Enemies;
     public float attackRange;
     public int damage;
+    private int combo;
+    public bool attacking;
+
+
 
     // Update is called once per frame
     void Update()
@@ -23,13 +27,18 @@ public class PlayerAttack : MonoBehaviour
     {
         if(attackCD <= 0)
         {
-            if (Input.GetKey(KeyCode.X))
+            if (Input.GetKey(KeyCode.X) && !attacking)
             {
-                animator.SetTrigger("Swing");
+                attacking = true;
+                animator.SetTrigger(""+combo);
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, Enemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(damage);
+                    if(combo == 2)
+                    {
+                        enemiesToDamage[i].GetComponent<Enemy>().Recoil(attackRange);
+                    }
                 }
             }
             attackCD = startAttackCD;
@@ -38,6 +47,20 @@ public class PlayerAttack : MonoBehaviour
         {
             attackCD -= Time.deltaTime;
         }
+    }
+
+    public void startCombo()
+    {
+        attacking = false;
+        if (combo < 3)
+        {
+            combo++;
+        }
+    }
+    public void finishCombo()
+    {
+        attacking = false;
+        combo = 0;
     }
     private void OnDrawGizmosSelected()
     {

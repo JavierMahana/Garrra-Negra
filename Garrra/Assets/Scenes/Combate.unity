@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bba9559a056eee46b422a57786b46c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAttackCD: 0.3
+  startAttackCD: 0.25
   animator: {fileID: 205134304}
   attackPos: {fileID: 1758870407}
   Enemies:
@@ -463,6 +463,7 @@ MonoBehaviour:
     m_Bits: 64
   attackRange: 0.93
   damage: 5
+  attacking: 0
 --- !u!95 &205134304
 Animator:
   serializedVersion: 3

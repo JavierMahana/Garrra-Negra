@@ -18,4 +18,8 @@ public class Enemy : MonoBehaviour
         health -= damage;
         Debug.Log("damage taken!");
     }
+    public void Recoil(float distance)
+    {
+        transform.position = new Vector2(transform.position.x + distance, transform.position.y + distance);
+    }
 }
