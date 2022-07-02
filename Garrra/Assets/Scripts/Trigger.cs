@@ -27,6 +27,7 @@ public class Trigger : MonoBehaviour
     public enum Goal
     {
         None,
+        Start,
         SavePoint,
         Tutorial1,
         Tutorial2
@@ -79,11 +80,13 @@ public class Trigger : MonoBehaviour
     [SerializeField]
     Transform TeleportTo;
 
-    
+    PlayerMovement playermov;
+
     void Awake()
     {
         if (HideTriggerSprite) spriteRenderer.enabled = false;
         if (goal != Goal.None ) DoOnce = false;
+        playermov = FindObjectOfType<PlayerMovement>();
     }
 
 
@@ -127,7 +130,8 @@ public class Trigger : MonoBehaviour
             #region Trigger Effects
             switch (effect)
             {
-                case Effect.slow: PlayerMovement.instance.moveSpeed = PlayerMovement.instance.defaultSpeed;
+                case Effect.slow:
+                    playermov.moveSpeed = playermov.defaultSpeed;
                     break;
             }
             #endregion
@@ -172,13 +176,21 @@ public class Trigger : MonoBehaviour
             #region Goal
             switch (goal)
             {
+                case Goal.Start:
+                    GameManager.instance.OnStart = true;
+                    break;
                 case Goal.SavePoint:
                     // Set current region as save point
                     Debug.Log("New Save Point Set -> " + gameObject.name);
+                    GameManager.instance.SavePoint = gameObject.transform.position;
+                    GameManager.instance.OnStart = false;
                     break;
-                case Goal.Tutorial1: SceneController.instance.toExploration();
+                case Goal.Tutorial1:
+                    SceneController.instance.toExploration();
                     break;
-                case Goal.Tutorial2: Debug.Log("JuegoCompleto!!!");
+                    
+                case Goal.Tutorial2:
+                    Debug.Log("JuegoCompleto!!!");
                     break;
                     // Set Scene change to the explorationMap and small + image for story telling (UI)
                     // Here use a gamemanager int to determine to which level the scene changer 
@@ -191,13 +203,13 @@ public class Trigger : MonoBehaviour
             #region Trigger Effects
             switch (effect)
             {
-                case Effect.lethal: HealthBar.instance.TakeDamage(HealthBar.instance.maxHealth);
+                case Effect.lethal: UI.instance.healthbar.TakeDamage(UI.instance.healthbar.maxHealth);
                     Debug.Log("Lethal Damage");
                     break;
                 case Effect.heal: Debug.Log("Heal");
                     break;
                 case Effect.slow:
-                    PlayerMovement.instance.moveSpeed = PlayerMovement.instance.slowSpeed; 
+                    playermov.moveSpeed = playermov.slowSpeed; 
                     Debug.Log("Slow");
                     break;
                    

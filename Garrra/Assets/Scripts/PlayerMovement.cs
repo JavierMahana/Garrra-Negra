@@ -7,9 +7,6 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance { get; private set; }
     void Awake()
     {
-        if (instance != null && instance != this) Destroy(this);
-        else { instance = this; }
-
         defaultSpeed = moveSpeed;
         slowSpeed = moveSpeed * 0.8f;
     }
@@ -20,7 +17,15 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 moveDirection;
     bool facingRight = true;
-    
+
+
+    void Start()
+    {
+        if (!GameManager.instance.OnStart)
+        {
+            gameObject.transform.position = GameManager.instance.SavePoint;
+        }
+    }
 
     // Update is called once per frame
     void Update()

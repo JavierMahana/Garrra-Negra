@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public Slider healthBar;
+    //public Slider healthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Enemy":
-                healthBar.GetComponent<HealthBar>().TakeDamage(10f);
+                UI.instance.healthbar.TakeDamage(10f);
                 
                 break;
             

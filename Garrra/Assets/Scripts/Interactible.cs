@@ -71,7 +71,7 @@ public class Interactible : MonoBehaviour
             if (Heals) 
             {
                 Debug.Log("HEAL");
-                HealthBar.instance.Heal(HealthBar.instance.maxHealth); 
+                UI.instance.healthbar.Heal(UI.instance.healthbar.maxHealth); 
                 Heals = false;
             }
         }   

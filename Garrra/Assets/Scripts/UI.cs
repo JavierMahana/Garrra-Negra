@@ -11,7 +11,10 @@ public class UI : MonoBehaviour
     {
         Instruction,
         Objective,
-        Confirmation
+        Confirmation,
+        Configuration,
+        MainMenuPanel
+        
     }
 
     [SerializeField]
@@ -22,7 +25,9 @@ public class UI : MonoBehaviour
     GameObject
         InstructionPanel,
         ObjectivePanel,
-        ConfirmationPanel;
+        ConfirmationPanel,
+        ConfigurationPanel,
+        MainMenuPanel;
 
     [SerializeField]
     Image
@@ -36,11 +41,31 @@ public class UI : MonoBehaviour
         InstructionText,
         ObjectiveText;
 
+    [SerializeField]
+    Dropdown
+        Resolutions;
+    public HealthBar healthbar;
 
     void Awake()
     {
-        if (instance != null && instance != this) Destroy(this);
-        else { instance = this; }
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (!SceneController.instance.InMainMenu() && Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            if (MainMenuPanel.activeSelf!=true) ShowPanel(PanelType.MainMenuPanel, true);
+            else ShowPanel(PanelType.MainMenuPanel, false);
+        }
     }
 
     public bool ImageUI()
@@ -79,6 +104,16 @@ public class UI : MonoBehaviour
             case PanelType.Confirmation:
                 ConfirmationPanel.SetActive(show);
                 break;
+            case PanelType.Configuration:
+                ConfigurationPanel.SetActive(show);
+                break;
+            case PanelType.MainMenuPanel:
+                if (ConfigurationPanel.activeSelf) ConfigurationPanel.SetActive(false);
+                MainMenuPanel.SetActive(show);
+                int time = (show == true) ? 0 : 1;
+                Time.timeScale = time;
+                Debug.Log("TimeScale: "+time);
+                break;
         }
     }
 
@@ -103,4 +138,50 @@ public class UI : MonoBehaviour
     }
 
     public void HideConfirmation() { ConfirmationPanel.SetActive(false); }
+
+    public void ConfirmationNextTutorial2()
+    {
+        SceneController.instance.toTutorial2();
+    }
+
+    public void ShowMainMenu(bool show)
+    {
+        ShowPanel(PanelType.MainMenuPanel, show);
+    }
+    public void MenuPlay()
+    {
+        if (SceneController.instance.InMainMenu()) { SceneController.instance.toTutorial1(); }
+        ShowPanel(PanelType.MainMenuPanel, false);
+    }
+
+    public void MenuExit()
+    {
+        SceneController.instance.ExitGame();
+    }
+
+    public void ShowConfiguration()
+    {
+        if(ConfigurationPanel.activeSelf) ShowPanel(PanelType.Configuration, false);
+        else { ShowPanel(PanelType.Configuration, true); }
+
+    }
+
+    public void SetFullScreen(bool set)
+    {
+        Screen.fullScreen = set;       
+    }
+
+    public void SetResolution()
+    {
+        string resolution = Resolutions.options[Resolutions.value].text;
+        Debug.Log(resolution);
+        string[] size = resolution.Split(char.Parse("x"));
+
+        int width = int.Parse(size[0]);
+        int height = int.Parse(size[1]);
+
+        Debug.Log($"Resoliution: width:{width} height:{height}");
+
+        Screen.SetResolution(width, height, true);
+    }
 }
