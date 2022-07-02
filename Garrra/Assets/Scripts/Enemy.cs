@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         Debug.Log("damage taken!");
+
     }
     public void Recoil(float distance)
     {
