@@ -9,7 +9,6 @@ public class Interactible : MonoBehaviour
     SpriteRenderer sprite;
 
     float defaultRotation;
-    float corner;
 
     [SerializeField]
     bool isDoor;
@@ -30,7 +29,6 @@ public class Interactible : MonoBehaviour
             sprite = objectInteractible.GetComponent<SpriteRenderer>();
             transformObj = objectInteractible.GetComponent<Transform>();
             defaultRotation = transform.rotation.z;
-            corner = transform.position.x;
         }
 
         
@@ -39,10 +37,8 @@ public class Interactible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(cooldown > 0)
-        {
-            cooldown--;
-        }
+        if(cooldown > 0) cooldown--;
+
     }
 
     void OnTriggerStay2D(Collider2D collision)

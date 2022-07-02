@@ -24,6 +24,13 @@ public class Trigger : MonoBehaviour
         activate,
     }
 
+    public enum Goal
+    {
+        None,
+        SavePoint,
+        TutorialEnd,
+    }
+
     [Header("Trigger Type")]
     [SerializeField]
     bool OnEnter;
@@ -56,6 +63,8 @@ public class Trigger : MonoBehaviour
     Effect effect;
     [SerializeField]
     Function function;
+    [SerializeField]
+    Goal goal;
 
     [Header("Settings")]
     [SerializeField]
@@ -69,25 +78,34 @@ public class Trigger : MonoBehaviour
     [SerializeField]
     Transform TeleportTo;
 
+    
     void Awake()
     {
         if (HideTriggerSprite) spriteRenderer.enabled = false;
+        if (goal != Goal.None ) DoOnce = false;
     }
+
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if(OnStay)
+        if (OnStay)
         {
-            #region Trigger Effects
-            switch (effect)
-            {
-                case Effect.slow:
-                    break;
-            }
-            #endregion
-
+ 
             if (collision.gameObject.CompareTag("Player"))
             {
+
+                #region Trigger -> UI
+                if (instructionText != "" || ClearInstructions)
+                {
+                    UI.instance.SetPanelText(UI.PanelType.Instruction, instructionText, ClearInstructions);
+                }
+
+                if (objectiveText != "" || ClearObjective)
+                {
+                    UI.instance.SetPanelText(UI.PanelType.Objective, objectiveText, ClearObjective);
+                }
+                #endregion
+
                 #region Trigger Function
                 switch (function)
                 {
@@ -142,29 +160,51 @@ public class Trigger : MonoBehaviour
 
             if (DoOnce) Destroy(gameObject);
         }
+
+        if (OnStay && collision.gameObject.CompareTag("Player") && effect == Effect.slow) Debug.Log("Leaving Slow");
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(OnEnter && collision.gameObject.CompareTag("Player"))
+        if (OnEnter && collision.gameObject.CompareTag("Player"))
         {
-            #region Trigger Effects
-            switch (effect)
+            #region Goal
+            switch (goal)
             {
-                case Effect.damage:
+                case Goal.SavePoint:
+                    // Set current region as save point
+                    Debug.Log("New Save Point Set -> " + gameObject.name);
                     break;
-                case Effect.heal:
+                case Goal.TutorialEnd:
+                    // Set Scene change to the explorationMap and small + image for story telling (UI)
+                    // Here use a gamemanager int to determine to which level the scene changer 
+                    // should go to next.
+                    Debug.Log("End of first tutorial");
+                    UI.instance.ShowTutorialImage(true);
                     break;
             }
             #endregion
 
+            #region Trigger Effects
+            switch (effect)
+            {
+                case Effect.damage: Debug.Log("Damage");
+                    break;
+                case Effect.heal: Debug.Log("Heal");
+                    break;
+                case Effect.slow: Debug.Log("Slow");
+                    break;
+                   
+            }
+            #endregion
+
             #region Trigger -> UI
-            if (instructionText != "" || ClearInstructions) 
+            if (instructionText != "" || ClearInstructions)
             {
                 UI.instance.SetPanelText(UI.PanelType.Instruction, instructionText, ClearInstructions);
             }
-            
-            if (objectiveText != "" || ClearObjective) 
+
+            if (objectiveText != "" || ClearObjective)
             {
                 UI.instance.SetPanelText(UI.PanelType.Objective, objectiveText, ClearObjective);
             }
@@ -187,25 +227,38 @@ public class Trigger : MonoBehaviour
 
             if (TeleportTo) collision.gameObject.transform.position = TeleportTo.transform.position;
 
-            if (DoOnce) Destroy(gameObject); 
+            if (DoOnce) Destroy(gameObject);
         }
     }
 
     void Activate()
     {
-        foreach (GameObject go in Activates) go.SetActive(true);
+        foreach (GameObject go in Activates)
+        {
+            if(go) go.SetActive(true);
+        }
     }
 
     void Deactivate()
     {
-        foreach (GameObject go in Activates) go.SetActive(false);
+        foreach (GameObject go in Deactivates)
+        {
+            if (go) go.SetActive(false);
+        }
     }
 
     void Check()
     {
-        if (Checks.Length < 0) Activate(); Deactivate();
-        return;
+        int objects = 0;
+        foreach (GameObject go in Checks)
+        {
+            if (go) objects++;
+        }
+        if (objects == 0)
+        {
+            Activate(); 
+            Deactivate(); 
+            Destroy(gameObject);
+        }
     }
-
-
 }

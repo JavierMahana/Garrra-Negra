@@ -22,7 +22,13 @@ public class UI : MonoBehaviour
         InstructionPanel,
         ObjectivePanel;
 
-   
+    [SerializeField]
+    Image
+        Image;
+    [SerializeField]
+    Sprite[]
+        images;
+    
     [SerializeField]
     Text
         InstructionText,
@@ -33,6 +39,29 @@ public class UI : MonoBehaviour
     {
         if (instance != null && instance != this) Destroy(this);
         else { instance = this; }
+    }
+
+    public bool ImageUI()
+    {
+        if (Image.gameObject.activeSelf) return true;
+        return false;
+    }
+
+    public void NextImage()
+    {
+        for(int i = 0; i < images.Length; i++)
+        {
+            if (images[i] == Image)
+            {
+                Image.sprite = images[i++];
+                break;
+            }
+        }
+    }
+
+    public void ShowTutorialImage(bool show)
+    {
+        Image.gameObject.SetActive(show);
     }
 
     public void ShowPanel(PanelType panel, bool show)
@@ -48,9 +77,11 @@ public class UI : MonoBehaviour
         }
     }
 
-    public void SetPanelText(PanelType panel, string text, bool clear = false)
+    public void SetPanelText(PanelType panel, string text = "", bool clear = false)
     {
-        if (clear) text = "";
+        text = text.Replace("(line)", "\n");
+        if (text != "") ShowPanel(panel, true);
+
         switch (panel)
         {
             case PanelType.Instruction:
@@ -61,5 +92,7 @@ public class UI : MonoBehaviour
                 if (ObjectivePanel) ObjectiveText.text = text;
                 break;
         }
+        // si se limpia un panel tambien se oculta
+        if (clear) ShowPanel(panel, !clear);
     }
 }
