@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TestingScript : MonoBehaviour
 {
+    public bool KillOnTouch;
+
     Collider2D collider2d;
     void Awake()
     {
@@ -12,6 +14,6 @@ public class TestingScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) Destroy(collision.gameObject);
+        if (collision.gameObject.CompareTag("Enemy") && KillOnTouch) Destroy(collision.gameObject);
     }
 }

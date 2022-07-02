@@ -11,7 +11,7 @@ public class Trigger : MonoBehaviour
     public enum Effect
     {
         none,
-        damage,
+        lethal,
         heal,
         slow
     }
@@ -28,7 +28,8 @@ public class Trigger : MonoBehaviour
     {
         None,
         SavePoint,
-        TutorialEnd,
+        Tutorial1,
+        Tutorial2
     }
 
     [Header("Trigger Type")]
@@ -126,7 +127,7 @@ public class Trigger : MonoBehaviour
             #region Trigger Effects
             switch (effect)
             {
-                case Effect.slow:
+                case Effect.slow: PlayerMovement.instance.moveSpeed = PlayerMovement.instance.defaultSpeed;
                     break;
             }
             #endregion
@@ -175,24 +176,29 @@ public class Trigger : MonoBehaviour
                     // Set current region as save point
                     Debug.Log("New Save Point Set -> " + gameObject.name);
                     break;
-                case Goal.TutorialEnd:
+                case Goal.Tutorial1: SceneController.instance.toExploration();
+                    break;
+                case Goal.Tutorial2: Debug.Log("JuegoCompleto!!!");
+                    break;
                     // Set Scene change to the explorationMap and small + image for story telling (UI)
                     // Here use a gamemanager int to determine to which level the scene changer 
                     // should go to next.
-                    Debug.Log("End of first tutorial");
-                    UI.instance.ShowTutorialImage(true);
-                    break;
+                    // ---> UI.instance.ShowTutorialImage(true);
+
             }
             #endregion
 
             #region Trigger Effects
             switch (effect)
             {
-                case Effect.damage: Debug.Log("Damage");
+                case Effect.lethal: HealthBar.instance.TakeDamage(HealthBar.instance.maxHealth);
+                    Debug.Log("Lethal Damage");
                     break;
                 case Effect.heal: Debug.Log("Heal");
                     break;
-                case Effect.slow: Debug.Log("Slow");
+                case Effect.slow:
+                    PlayerMovement.instance.moveSpeed = PlayerMovement.instance.slowSpeed; 
+                    Debug.Log("Slow");
                     break;
                    
             }

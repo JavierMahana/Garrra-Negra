@@ -11,7 +11,7 @@ public class Interactible : MonoBehaviour
     float defaultRotation;
 
     [SerializeField]
-    bool isDoor;
+    bool isDoor, Heals;
     [SerializeField]
     GameObject objectInteractible;
 
@@ -66,6 +66,13 @@ public class Interactible : MonoBehaviour
                     transformObj.rotation = Quaternion.Euler(0, 0, defaultRotation);
                     transformObj.position -= moveVect;
                 }
+            }
+
+            if (Heals) 
+            {
+                Debug.Log("HEAL");
+                HealthBar.instance.Heal(HealthBar.instance.maxHealth); 
+                Heals = false;
             }
         }   
     }

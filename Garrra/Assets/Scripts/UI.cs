@@ -10,7 +10,8 @@ public class UI : MonoBehaviour
     public enum PanelType
     {
         Instruction,
-        Objective
+        Objective,
+        Confirmation
     }
 
     [SerializeField]
@@ -20,7 +21,8 @@ public class UI : MonoBehaviour
     [SerializeField]
     GameObject
         InstructionPanel,
-        ObjectivePanel;
+        ObjectivePanel,
+        ConfirmationPanel;
 
     [SerializeField]
     Image
@@ -74,6 +76,9 @@ public class UI : MonoBehaviour
             case PanelType.Objective:
                 ObjectivePanel.SetActive(show);
                 break;
+            case PanelType.Confirmation:
+                ConfirmationPanel.SetActive(show);
+                break;
         }
     }
 
@@ -91,8 +96,11 @@ public class UI : MonoBehaviour
             case PanelType.Objective:
                 if (ObjectivePanel) ObjectiveText.text = text;
                 break;
+           
         }
         // si se limpia un panel tambien se oculta
         if (clear) ShowPanel(panel, !clear);
     }
+
+    public void HideConfirmation() { ConfirmationPanel.SetActive(false); }
 }

@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public GameObject UImessage;
+    public static SceneController instance { get; private set; }
+    void Awake()
+    {
+        if (instance != null && instance != this) Destroy(this);
+        else { instance = this; }
+    }
+
     public void toExploration()
     {
         SceneManager.LoadScene("Exploracion");
@@ -14,13 +20,17 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("Combate");
     }
+    public void toTutorial1()
+    {
+        SceneManager.LoadScene("Tutorial01");
+    }
+    public void toTutorial2()
+    {
+        SceneManager.LoadScene("Tutorial02");
+    }
     public void toMenu()
     {
         SceneManager.LoadScene("Main Menu");
-    }
-    public void dismissMessage()
-    {
-        UImessage.SetActive(false);
     }
     public void ExitGame()
     {

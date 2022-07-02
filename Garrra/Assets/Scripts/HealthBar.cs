@@ -5,8 +5,15 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    public static HealthBar instance { get; private set; }
+    void Awake()
+    {
+        if (instance != null && instance != this) Destroy(this);
+        else { instance = this; }
+    }
+
     public Slider healthBar;
-    float maxHealth = 100;
+    public float maxHealth = 100;
     float currentHealth;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +29,12 @@ public class HealthBar : MonoBehaviour
         healthBar.value = currentHealth;
     }
     
-
+    public void Heal(float heal)
+    {
+        currentHealth += heal;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        Debug.Log($"health: {currentHealth} / {maxHealth}");
+        healthBar.value = currentHealth;
+    }
     
 }

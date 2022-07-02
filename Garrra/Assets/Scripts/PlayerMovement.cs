@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance { get; private set; }
+    void Awake()
+    {
+        if (instance != null && instance != this) Destroy(this);
+        else { instance = this; }
+
+        defaultSpeed = moveSpeed;
+        slowSpeed = moveSpeed * 0.8f;
+    }
+
     public float moveSpeed;
+    public float defaultSpeed;
+    public float slowSpeed;
     public Rigidbody2D rb;
     public Vector2 moveDirection;
     bool facingRight = true;
