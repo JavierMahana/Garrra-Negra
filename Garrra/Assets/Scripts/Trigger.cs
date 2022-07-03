@@ -173,9 +173,12 @@ public class Trigger : MonoBehaviour
     {
         if (OnEnter && collision.gameObject.CompareTag("Player"))
         {
+            UI ui;
+
             #region Goal
             switch (goal)
             {
+                
                 case Goal.Start:
                     GameManager.instance.OnStart = true;
                     break;
@@ -186,11 +189,16 @@ public class Trigger : MonoBehaviour
                     GameManager.instance.OnStart = false;
                     break;
                 case Goal.Tutorial1:
+                    ui = UI.instance;
+                    UI.instance.SetPanelText(UI.PanelType.Image, ui.ImagesText[ui.currentImage]);
                     SceneController.instance.toExploration();
                     break;
                     
                 case Goal.Tutorial2:
+                    ui = UI.instance;
+                    UI.instance.SetPanelText(UI.PanelType.Image, ui.ImagesText[ui.currentImage]);
                     Debug.Log("JuegoCompleto!!!");
+                    SceneController.instance.ExitGame();
                     break;
                     // Set Scene change to the explorationMap and small + image for story telling (UI)
                     // Here use a gamemanager int to determine to which level the scene changer 
@@ -279,4 +287,5 @@ public class Trigger : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

@@ -13,7 +13,8 @@ public class UI : MonoBehaviour
         Objective,
         Confirmation,
         Configuration,
-        MainMenuPanel
+        MainMenuPanel,
+        Image
         
     }
 
@@ -27,7 +28,8 @@ public class UI : MonoBehaviour
         ObjectivePanel,
         ConfirmationPanel,
         ConfigurationPanel,
-        MainMenuPanel;
+        MainMenuPanel,
+        ImagePanel;
 
     [SerializeField]
     Image
@@ -35,16 +37,24 @@ public class UI : MonoBehaviour
     [SerializeField]
     Sprite[]
         images;
-    
+
+    [TextArea(3, 6)]
+    public string[]
+        ImagesText;
+
     [SerializeField]
     Text
         InstructionText,
-        ObjectiveText;
+        ObjectiveText,
+        ImageText;
 
     [SerializeField]
     Dropdown
         Resolutions;
     public HealthBar healthbar;
+
+    [HideInInspector]
+    public int currentImage = 0;
 
     void Awake()
     {
@@ -66,6 +76,12 @@ public class UI : MonoBehaviour
             if (MainMenuPanel.activeSelf!=true) ShowPanel(PanelType.MainMenuPanel, true);
             else ShowPanel(PanelType.MainMenuPanel, false);
         }
+
+        if (ImagePanel.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        {
+            ShowPanel(PanelType.Image, false);
+            if (currentImage < 2) currentImage++;
+        }
     }
 
     public bool ImageUI()
@@ -86,14 +102,10 @@ public class UI : MonoBehaviour
         }
     }
 
-    public void ShowTutorialImage(bool show)
-    {
-        Image.gameObject.SetActive(show);
-    }
-
     public void ShowPanel(PanelType panel, bool show)
-    {   
-        switch(panel)
+    {
+        int time;
+        switch (panel)
         {
             case PanelType.Instruction:
                 InstructionPanel.SetActive(show);
@@ -110,9 +122,16 @@ public class UI : MonoBehaviour
             case PanelType.MainMenuPanel:
                 if (ConfigurationPanel.activeSelf) ConfigurationPanel.SetActive(false);
                 MainMenuPanel.SetActive(show);
-                int time = (show == true) ? 0 : 1;
+                time = (show == true) ? 0 : 1;
                 Time.timeScale = time;
-                Debug.Log("TimeScale: "+time);
+                Debug.Log("Menu -> TimeScale: "+time);
+                break;
+            case PanelType.Image:
+                time = (show == true) ? 0 : 1;
+                Time.timeScale = time;
+                ImagePanel.SetActive(show);
+                Debug.Log("Image -> TimeScale: " + time);
+                Image.sprite = images[currentImage];
                 break;
         }
     }
@@ -131,7 +150,10 @@ public class UI : MonoBehaviour
             case PanelType.Objective:
                 if (ObjectivePanel) ObjectiveText.text = text;
                 break;
-           
+            case PanelType.Image:
+                if (ImagePanel) ImageText.text = text;
+                break;
+
         }
         // si se limpia un panel tambien se oculta
         if (clear) ShowPanel(panel, !clear);
@@ -150,7 +172,12 @@ public class UI : MonoBehaviour
     }
     public void MenuPlay()
     {
-        if (SceneController.instance.InMainMenu()) { SceneController.instance.toTutorial1(); }
+        if (SceneController.instance.InMainMenu()) 
+        {
+            currentImage = 0;
+            SetPanelText(PanelType.Image, ImagesText[currentImage]);
+            SceneController.instance.toTutorial1();  
+        }
         ShowPanel(PanelType.MainMenuPanel, false);
     }
 
