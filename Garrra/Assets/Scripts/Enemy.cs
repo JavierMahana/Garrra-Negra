@@ -18,6 +18,10 @@ public class Enemy : MonoBehaviour
         health -= damage;
         Debug.Log("damage taken!");
 
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public void Recoil(float distance)
     {
