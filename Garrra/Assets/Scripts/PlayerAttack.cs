@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float attackCD;
+    public float attackCD;
     public float startAttackCD;
     public Animator animator;
 

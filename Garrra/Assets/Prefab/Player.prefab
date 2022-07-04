@@ -283,6 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 6104457886871331217}
   startParryTimer: 0.5
+  shieldCD: 0
+  startShieldCD: 1
 --- !u!61 &6221348422823352197
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     public GameObject shield;
     float parryWindow;
     public float startParryTimer;
-    public float shieldTimer = 1.5f;
+    private float shieldCD;
+    public float startShieldCD;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       ShieldUp();
+        ShieldUp();
+      
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -32,36 +35,38 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-
+    private void ShieldUp()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.C) && !shield.activeInHierarchy)
+        {
+            shield.SetActive(true);
+            Parry();
+            shieldCD = startShieldCD;
+        }          
+        else
+        {
+            shieldCD -= Time.deltaTime;
+            if(shieldCD <= 0)
+            {
+                shield.SetActive(false);
+            }
+        }
+    }
+    
     private void Parry()
     {
         parryWindow -= Time.deltaTime;
 
         if (parryWindow <= startParryTimer && parryWindow > 0 && shield.GetComponent<Shield>().isColliding)
         {         
-           
-                               
-                       
+                                        
+                     
             
         }
         
     }
 
-    private void ShieldUp()
-    {
-        if (Input.GetKeyDown(KeyCode.C) && shieldTimer == 1.5f)
-        {
-            shield.SetActive(true);
-            Parry();
-            shieldTimer -= Time.deltaTime;
-
-        }
-        else
-        {
-            shieldTimer = 1.5f;
-            shield.SetActive(false);
-        }
-        
-    }
+   
 
 }
