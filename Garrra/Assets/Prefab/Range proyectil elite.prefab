@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8226770118309401235}
   - component: {fileID: 347433982106459288}
   - component: {fileID: 2468466045523905828}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Range proyectil elite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

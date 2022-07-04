@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3958365619421419344}
   - component: {fileID: 5331681824822946748}
   - component: {fileID: 52536417420274471}
+  - component: {fileID: 316272496166600419}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -93,12 +94,32 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.28
+--- !u!250 &316272496166600419
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294189153871197885}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ForceMagnitude: 300
+  m_ForceVariation: 100
+  m_DistanceScale: 1
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0
 --- !u!1 &6221348422823352253
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 1294189153871197885}
   startParryTimer: 0
-  startShieldCD: 0
+  startShieldCD: 1
 --- !u!114 &892322374339762433
 MonoBehaviour:
   m_ObjectHideFlags: 0
