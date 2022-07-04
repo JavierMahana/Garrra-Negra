@@ -35,9 +35,10 @@ public class PlayerAttack : MonoBehaviour
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(damage);
-                    if(combo == 2)
+                    enemiesToDamage[i].GetComponent<Enemy>().Recoil(1);
+                    if (combo == 2)
                     {
-                        enemiesToDamage[i].GetComponent<Enemy>().Recoil(attackRange);
+                        enemiesToDamage[i].GetComponent<Enemy>().Recoil(2f);
                     }
                 }
             }
