@@ -34,12 +34,24 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, Enemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(damage);
-                    enemiesToDamage[i].GetComponent<Enemy>().Recoil(1);
-                    if (combo == 2)
+                    if (enemiesToDamage[i].CompareTag("Barrel")) enemiesToDamage[i].gameObject.GetComponent<Destructible>().Drop();
+                    else 
                     {
-                        enemiesToDamage[i].GetComponent<Enemy>().Recoil(2f);
-                    }
+                        Enemy enemy = enemiesToDamage[i].GetComponent<Enemy>();
+
+                        if(enemy)
+                        {
+                            enemy.TakeDamage(damage);
+                            enemy.Recoil(0.5f);
+                        }
+                        //enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(damage);
+                        //enemiesToDamage[i].GetComponent<Enemy>().Recoil(1);
+                        if (combo == 2)
+                        {
+                            enemy.Recoil(1f);
+                            //enemiesToDamage[i].GetComponent<Enemy>().Recoil(2f);
+                        }
+                    } 
                 }
             }
             attackCD = startAttackCD;
