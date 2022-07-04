@@ -43,19 +43,22 @@ public class Proyectil : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (playerTeam)
+        if (!playerTeam)
         {
             if (collision.gameObject.tag == "Player")
             {
-                Debug.Log($"Aplica daño: {damage}.");
+                var healthbar = FindObjectOfType<HealthBar>();
+                healthbar.TakeDamage(damage);
+                //Debug.Log($"Aplica daño: {damage}.");
 
             }
         }
         else
         {
-            if (collision.gameObject.tag == "Player")
+            var enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                Debug.Log($"Aplica daño: {damage}.");
+                enemy.TakeDamage(damage);
 
             }
         }

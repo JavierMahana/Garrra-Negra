@@ -81,19 +81,19 @@ public class Enemy : MonoBehaviour
 
     public void LaunchAttack()
     {
-        var proyectilDirection = (player.transform.position - transform.position).normalized;
-        var startingPos = transform.position + (proyectilDirection * proyectilSpawnOffset);
+        var proyectilDirection = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+        var startingPos = (Vector2)transform.position + (proyectilDirection * proyectilSpawnOffset);
 
         var angle = Vector3.SignedAngle(proyectilDirection, Vector3.right, new Vector3(0,0,-1));
 
-        var proyectilInstance = Instantiate(attackProyectil, startingPos, Quaternion.Euler(0,0, angle));
+        var proyectilInstance = Instantiate(attackProyectil, new Vector3(startingPos.x, startingPos.y, transform.position.z), Quaternion.Euler(0,0, angle));
     }
 
     //Esta funcion realiza la logica para calcular si se debe atacar o no.
     //devuelve true si se debe atacar, falso sino
     private bool TryAttackPlayer(float deltaTime)
     {
-        var distToPlayerSqr = (player.transform.position - transform.position).sqrMagnitude;
+        var distToPlayerSqr = ((Vector2)player.transform.position - (Vector2)transform.position).sqrMagnitude;
         var attackRangeSqr = attackRange * attackRange;
         var attackDistanceTresholdSqr = attackDistanceTreshold * attackDistanceTreshold;
 
@@ -129,7 +129,7 @@ public class Enemy : MonoBehaviour
     {
         //sigue al jugador a max velocidad, hasta que llega cerca de el y ahi trata de quedarse pegado.
 
-        var separation = player.transform.position - transform.position;
+        var separation = (Vector2)player.transform.position - (Vector2)transform.position;
         var distance = separation.magnitude;
 
         var rad = (circleCollider.radius + playerCollider.radius);
@@ -143,6 +143,8 @@ public class Enemy : MonoBehaviour
         {
             movementMag = distance - rad;
         }
+
+
         transform.Translate(destinationPoint.normalized * movementMag);
     }
 
@@ -173,11 +175,19 @@ public class Enemy : MonoBehaviour
         timerOnAttackRange = 0;
 
         health -= damage;
-        Debug.Log("damage taken!");
+
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+        //Debug.Log($"enemy: {name} has taken {damage} damage!");
 
     }
     public void Recoil(float distance)
     {
-        transform.position = new Vector2(transform.position.x + distance, transform.position.y + distance);
+        var recoilDir = ((Vector2)transform.position - (Vector2)player.transform.position).normalized;
+        var recoilVector = recoilDir * distance;
+
+        transform.position = new Vector3(transform.position.x + recoilVector.x, transform.position.y + recoilVector.y);
     }
 }
