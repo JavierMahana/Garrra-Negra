@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public float movementSpeed = 1.0f;
     public bool onAttackRange = false;
 
+    public bool Still = false;
+
     public float attackRange = 1f;
 
     public float attackPrepTime = 1.0f;
@@ -57,7 +59,7 @@ public class Enemy : MonoBehaviour
     {
         playerOnSight = CheckPlayerIsOnSight();
 
-        animator.SetBool("PlayerOnSight", playerOnSight);
+        if(animator)animator.SetBool("PlayerOnSight", playerOnSight);
 
         if (isAttacking)
         {
@@ -69,12 +71,16 @@ public class Enemy : MonoBehaviour
 
         if (playerOnSight && !isAttacking)
         {
-            ChasePlayer(Time.deltaTime);
+            if(!Still)
+            {
+                ChasePlayer(Time.deltaTime);
+            }
+            
             if (TryAttackPlayer(Time.deltaTime))
             {
 
                 isAttacking = true;
-                animator.SetTrigger("Attack");
+                if (animator) animator.SetTrigger("Attack");
             }
         }
     }

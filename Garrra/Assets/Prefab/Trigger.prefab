@@ -135,8 +135,9 @@ MonoBehaviour:
   ClearObjective: 0
   effect: 0
   function: 0
+  goal: 0
   DoOnce: 0
-  HideTriggerSprite: 0
+  HideTriggerSprite: 1
   spriteRenderer: {fileID: 7534008155291436051}
   TeleportTo: {fileID: 0}
 --- !u!50 &-4391661463638611475
