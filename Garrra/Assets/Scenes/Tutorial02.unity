@@ -908,7 +908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: DoOnce
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: OnStay
@@ -924,7 +924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- Island Completed!'
+      value: '- Mision Completa!'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: ClearObjective
@@ -1535,7 +1535,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: afa712937592842478abd5bfe2770090, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84492,7 +84492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- Explore the Island and find it''s treasure'
+      value: '- Explora la isla y Busca un Tesoro'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
@@ -88456,7 +88456,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: DoOnce
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: OnStay
@@ -88468,7 +88468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: function
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
@@ -88675,7 +88675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- Explore the Island and find it''s treasure'
+      value: '- Explora la isla y Busca un Tesoro'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
@@ -88854,7 +88854,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: afa712937592842478abd5bfe2770090, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -89913,7 +89913,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -89962,8 +89962,8 @@ SpriteRenderer:
   m_SortingLayerID: 1836132635
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: afa712937592842478abd5bfe2770090, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -90595,7 +90595,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: afa712937592842478abd5bfe2770090, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92094,12 +92094,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- Explore the Island and find it''s treasure'
+      value: '- Explora la isla y Busca un Tesoro'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
-      value: Healing Fountains will heal health points to full. Interact by pressing
-        E
+      value: "Interactua con fuentes de sanacion para curarte al m\xE1ximo. Interactua
+        con E"
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: ClearInstructions
@@ -93390,7 +93390,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -93439,8 +93439,8 @@ SpriteRenderer:
   m_SortingLayerID: 1836132635
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: afa712937592842478abd5bfe2770090, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

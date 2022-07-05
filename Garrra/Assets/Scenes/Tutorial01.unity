@@ -318,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- End the mutiny! (line)- Defeat the rest of your crew'
+      value: '- !Termina con el Motin! (line)- Mata al resto de tu tripulacion'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: ClearObjective
@@ -444,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- End the mutiny! (line)- Go upstairs'
+      value: '- !Termina con el Motin! (line)- Sube las escaleras'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
@@ -3196,11 +3196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- End the mutiny! (line)- Kill the swarmer'
+      value: '- !Termina con el Motin! (line)- Mata al Swarmer'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
-      value: Press X to attack
+      value: Presiona X para atacar
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436046, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: m_RootOrder
@@ -4334,11 +4334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- Check on the Ship''s crew'
+      value: '- Revisa que sucede con la tripulacion'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
-      value: Press E to interact with an object
+      value: Presiona E para interactuar con objetos
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436046, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: m_RootOrder
@@ -4469,11 +4469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- Check on the Ship''s crew'
+      value: '- Revisa que sucede con la tripulacion'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
-      value: Move around using W, S, D, A keys
+      value: Muevete usando las teclas W,S,A,D
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436046, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: m_RootOrder
@@ -6827,7 +6827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- End the mutiny! (line)- Go upstairs into the Ship''s Deck'
+      value: '- !Termina con el Motin! (line)- Sube a la cubierta del barco'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
@@ -7314,7 +7314,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: afa712937592842478abd5bfe2770090, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7420,11 +7420,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- End the mutiny! (line)- Kill the 3 swarmers'
+      value: '- !Termina con el Motin! (line)- Mata a los 3 swarmers'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
-      value: Press X repeatedly to do a 3 combo attack!
+      value: Presiona X repetidas veces para realizar el combo de 3 ataques
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: Checks.Array.size
@@ -7915,7 +7915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- End the mutiny! (line)- Kill the 3 gunslingers'
+      value: '- !Termina con el Motin!  (line)- Mata a los 3 pistoleros'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
@@ -8736,7 +8736,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: afa712937592842478abd5bfe2770090, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9312,11 +9312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: objectiveText
-      value: '- End the mutiny! (line)- Kill the gunslinger'
+      value: '- !Termina con el Motin! (line)- Mata al pistolero'
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436045, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: instructionText
-      value: Press C to deflect an enemy proyectile
+      value: Presiona C para deflectar proyectiles
       objectReference: {fileID: 0}
     - target: {fileID: 7534008155291436046, guid: e7e979d8d8119584a86d80b14c69f4b7, type: 3}
       propertyPath: m_RootOrder
