@@ -209,6 +209,6 @@ public class UI : MonoBehaviour
 
         Debug.Log($"Resoliution: width:{width} height:{height}");
 
-        Screen.SetResolution(width, height, true);
+        Screen.SetResolution(width, height, Screen.fullScreen);
     }
 }
