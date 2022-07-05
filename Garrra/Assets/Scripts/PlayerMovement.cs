@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance { get; private set; }
+
+    public Animator animator;
     void Awake()
     {
         defaultSpeed = moveSpeed;
@@ -53,6 +55,21 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         if (moveDirection.x > 0 && !facingRight)
             Flip();
+
+        //Vertical//
+        if (moveDirection.y == 0)
+        {
+            animator.SetBool("walkup", false);
+            animator.SetBool("walkdown", false);
+        }
+        else if(moveDirection.y > 0)
+        {
+            animator.SetBool("walkup", true);
+        }
+        else if(moveDirection.y < 0)
+        {
+            animator.SetBool("walkdown", true);
+        }
     }
 
     void Flip()
