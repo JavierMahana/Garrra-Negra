@@ -81,6 +81,7 @@ public class UI : MonoBehaviour
         {
             ShowPanel(PanelType.Image, false);
             if (currentImage < 2) currentImage++;
+            else SceneController.instance.ExitGame();
         }
     }
 

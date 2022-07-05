@@ -198,7 +198,6 @@ public class Trigger : MonoBehaviour
                     ui = UI.instance;
                     UI.instance.SetPanelText(UI.PanelType.Image, ui.ImagesText[ui.currentImage]);
                     Debug.Log("JuegoCompleto!!!");
-                    SceneController.instance.ExitGame();
                     break;
                     // Set Scene change to the explorationMap and small + image for story telling (UI)
                     // Here use a gamemanager int to determine to which level the scene changer 
